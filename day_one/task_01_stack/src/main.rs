@@ -1,25 +1,31 @@
 pub struct Stack<T>{
-    items: Vec<T>
+    pub items: Vec<T>
 }
   
 impl<T> Stack<T>{
+
+    pub fn new() -> Self{
+        Stack { 
+            items: Vec::new()
+         }
+    }
     //push
-    fn push(&mut self, item: T){
+    pub fn push(&mut self, item: T){
         self.items.push(item);
     }
   
     //pop
-    fn pop(&mut self) -> Option<T>{
+    pub fn pop(&mut self) -> Option<T>{
         self.items.pop()
     }
   
     // peek
-    fn peek(&self) -> Option<&T>{
+    pub fn peek(&self) -> Option<&T>{
         self.items.last()
     }
   
     // is_empty
-    fn is_empty(&self) -> bool{
+    pub fn is_empty(&self) -> bool{
         if self.items.len() == 0{
              true  
         } else{
@@ -28,7 +34,7 @@ impl<T> Stack<T>{
     }
   
     // size
-    fn size(&self) -> usize {
+    pub fn size(&self) -> usize {
         self.items.len()
     }
   }
@@ -39,20 +45,27 @@ fn main() {
   
     //Tests
 #[cfg(test)]
-mod tests{
+mod stack{
     use super::*;
+
+    #[test]
+    fn new(){
+        let mut stack = Stack::new();
+        stack.push(4);
+        assert_eq!(stack.size(), 1)
+    }
+
   
     #[test]
     fn push(){
-        let mut stack = Stack{ items: Vec::new()};
+        let mut stack = Stack::new();
         stack.push(10);
         assert_eq!(stack.items.contains(&10), true);
-        println!("Push stack operation succesfull");
     }
     
     #[test]
     fn pop(){
-        let mut stack = Stack{items: Vec::new()};
+        let mut stack = Stack::new();
         stack.push(20);
         stack.push(15);
         assert_eq!(stack.pop(), Some(15));
@@ -60,7 +73,7 @@ mod tests{
     
     #[test]
     fn peek(){
-        let mut stack = Stack{items: Vec::new()};
+        let mut stack = Stack::new();
         stack.push(20);
         stack.push(15);
         assert_eq!(stack.peek(), Some(&15));  
@@ -68,7 +81,7 @@ mod tests{
     
     #[test]
     fn is_empty(){
-        let mut stack = Stack{items: Vec::new()};
+        let mut stack = Stack::new();
         assert_eq!(stack.is_empty(), true);  
         stack.push(20);
         assert_eq!(stack.is_empty(), false);  
@@ -76,7 +89,7 @@ mod tests{
     
     #[test]
     fn size(){
-        let mut stack = Stack{items: Vec::new()};
+        let mut stack = Stack::new();
         stack.push(20);
         stack.push(15);
         assert_eq!(stack.size(), 2);
