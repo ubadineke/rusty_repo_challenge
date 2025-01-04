@@ -1,0 +1,7 @@
+[package]
+name = "task_02_queue"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+task_01_stack = { path = "../task_01_stack" }

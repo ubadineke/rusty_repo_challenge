@@ -3,7 +3,6 @@ pub struct Stack<T>{
 }
   
 impl<T> Stack<T>{
-
     pub fn new() -> Self{
         Stack { 
             items: Vec::new()
@@ -39,6 +38,8 @@ impl<T> Stack<T>{
     }
   }
   
+  // Re-export Stack from main.rs (making it accessible)
+// pub use self::Stack;
 fn main() {
 
   }
