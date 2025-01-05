@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 struct Node <T>{
     data: T,
     next: Option<Box<Node<T>>>
@@ -8,7 +10,7 @@ struct LinkedList<T>{
     head: Option<Box<Node<T>>>
 }
 
-impl<T> LinkedList<T>{
+impl<T: Display> LinkedList<T>{
     pub fn new() -> Self{
         LinkedList {head: None}
     }
@@ -29,9 +31,16 @@ impl<T> LinkedList<T>{
         })
     }
 
-    // pub fn display(&self) -> Option<&T>{
+    pub fn display(&self) {
+        let mut current = &self.head;
 
-    // }
+        while let Some(node) = current{
+            print!("{} -> ", node.data );
+            current = &node.next
+        }
+
+        print!("None");
+    }
 
     pub fn is_empty(&self) -> bool{
         self.head.is_none()
@@ -43,6 +52,10 @@ impl<T> LinkedList<T>{
 }
 fn main() {
     println!("Hello, world!");
+    let mut linked_list = LinkedList::new();
+    linked_list.push(90);
+    linked_list.push(80);
+    linked_list.display();
 }
 
 #[cfg(test)]
@@ -68,6 +81,10 @@ mod tests{
         let mut linked_list = LinkedList::new();
         linked_list.push(90);
         linked_list.push(80);
+        linked_list.push(70);
+        linked_list.display();
+        linked_list.pop();
+        linked_list.display();
 
         assert_eq!(linked_list.pop(), Some(80))
 
