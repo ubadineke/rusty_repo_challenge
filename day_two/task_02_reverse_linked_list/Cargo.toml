@@ -1,0 +1,7 @@
+[package]
+name = "task_02_reverse_linked_list"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+task_01_linked_lists = { path = "../task_01_linked_lists" }
